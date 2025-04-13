@@ -26,6 +26,8 @@ public class ValidarCandidato {
         
         selecaoCandidatos(candidatos, 2000.0);
         
+        imprimirSelecionados(getCandidatosSelecionados(candidatos));
+        
     }
     
     static void entrarEmContato(Candidato candidato){
@@ -52,18 +54,34 @@ public class ValidarCandidato {
             System.out.println("O candidato " + candidatoNome + " Solicitou este valor de salario " + String.format("%.2f", salarioPretendido));
             if(salarioBase >= salarioPretendido){
                 System.out.println("O candidato " + candidatoNome + " foi selecionado para a vaga");
-                candidatosSelecionadoslist.add(candidatosList.get(candidatoAtual));
+                candidatosList.get(candidatoAtual).setSelecionado(true);
+               // candidatosSelecionadoslist.add(candidatosList.get(candidatoAtual));
                 candidatosSelecionados++;
             }
             
             candidatoAtual++;
         }
         
-        System.out.println("\n----------------- Candidatos Selecionados -----------------\n");
-        imprimirSelecionados(candidatosSelecionadoslist);
+       // imprimirSelecionados(getCandidatosSelecionados(candidatosList));
+    }
+    
+    static ArrayList<Candidato> getCandidatosSelecionados(ArrayList<Candidato> candidatos){
+        
+        ArrayList<Candidato> candidatosSelecionados = new ArrayList<Candidato>();
+        
+        for(Candidato candidatoAtual : candidatos){
+            if(candidatoAtual.isSelecionado()){
+                candidatosSelecionados.add(candidatoAtual);
+            }
+        }
+        
+        return candidatosSelecionados;
     }
     
     static void imprimirSelecionados(ArrayList<Candidato> candidatosSelecionados){
+        
+        System.out.println("\n----------------- Candidatos Selecionados -----------------\n");
+
         for (Candidato candidatoAtual : candidatosSelecionados){
             System.out.println(candidatoAtual.imprimirDadosCandidato());
         }
