@@ -8,21 +8,38 @@ public class ValidarCandidato {
     public static void main(String[] args) {
         ArrayList<Candidato> candidatos = new ArrayList<Candidato>();
         
-        Candidato c1 = new Candidato("Rafael Santos", "11 991427214");
-        Candidato c2 = new Candidato("Cleiton Santos", "11 996578912");
-        Candidato c3 = new Candidato("Miguel Diaz", "11 11111111");
-        Candidato c4 = new Candidato("Max Vianna", "11 11111111");
-        
-        candidatos.add(c1);
-        candidatos.add(c2);
-        candidatos.add(c3);
-        candidatos.add(c4);
+        candidatos.add(new Candidato("Rafael Santos", "11 991427214"));
+        candidatos.add(new Candidato("Cleiton Santos", "11 996578912"));
+        candidatos.add(new Candidato("Miguel Diaz", "11 11111111"));
+        candidatos.add(new Candidato("Max Vianna", "11 11111111"));
+        candidatos.add(new Candidato("Ramon Bueno", "11 11111111"));
+        candidatos.add(new Candidato("Madara Uchiha", "11 11111111"));
+        candidatos.add(new Candidato("Mano Menezes", "11 11111111"));
+        candidatos.add(new Candidato("Abel Ferreira", "11 11111111"));
         
         for(Candidato candidatoSelecionado : candidatos){
             candidatoSelecionado.setSalarioPretendido(valorPretendido());
         }
         
+        selecaoCandidatos(candidatos, 2000.0);
+    }
+    
+    static void selecaoCandidatos(ArrayList<Candidato> candidatosList, double salarioBase){
+        int candidatosSelecionados = 0;
+        int candidatoAtual = 0;
         
+        while(candidatosSelecionados < 5 && candidatoAtual < candidatosList.size()){
+            String candidatoNome = candidatosList.get(candidatoAtual).getNome();
+            double salarioPretendido = candidatosList.get(candidatoAtual).getSalarioPretendido();
+            
+            System.out.println("O candidato " + candidatoNome + " Solicitou este valor de salario " + String.format("%.2f", salarioPretendido));
+            if(salarioBase >= salarioPretendido){
+                System.out.println("O candidato " + candidatoNome + " foi selecionado para a vaga");
+                candidatosSelecionados++;
+            }
+            
+            candidatoAtual++;
+        }
     }
     
     
