@@ -2,6 +2,8 @@ package sistemaProcessoSeletivo;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class ValidarCandidato {
 
@@ -26,8 +28,8 @@ public class ValidarCandidato {
     
     static void selecaoCandidatos(ArrayList<Candidato> candidatosList, double salarioBase){
         
-        ArrayList<Candidato> candidatosSelecionados = new ArrayList<Candidato>();
-        
+        int candidatosSelecionados = 0;
+                
         for(Candidato candidatoAtual : candidatosList){
             String candidatoNome = candidatoAtual.getNome();
             double salarioPretendido = candidatoAtual.getSalarioPretendido();
@@ -35,17 +37,34 @@ public class ValidarCandidato {
             System.out.println("O candidato " + candidatoNome +
                     " Solicitou este valor de salario " + String.format("%.2f", salarioPretendido));
             
-            if(salarioBase >= salarioPretendido && candidatosSelecionados.size() < 5){
+            if(salarioBase >= salarioPretendido && candidatosSelecionados < 5){
                 System.out.println("O candidato " + candidatoNome + " foi selecionado para a vaga");
-                candidatosSelecionados.add(candidatoAtual);
+                candidatoAtual.setSelecionado(true);
+                
+                candidatosSelecionados++;
             }
         }
         
+        imprimirCandidatosSelecionados(candidatosList);
+        
     }
     
+    static void imprimirCandidatosSelecionados(ArrayList<Candidato> candidatosList){
+        System.out.println("\n---------- Candidatos Selecionados ----------\n");
+        for(Candidato candidatoAtual : candidatosList){
+            if(candidatoAtual.isSelecionado()){
+                System.out.println(candidatoAtual.imprimirDadosCandidato());
+            }
+        }
+            
+    }
     
     static double valorPretendido(){
-        return ThreadLocalRandom.current().nextDouble(1800, 2200);
+        double valorAleatorio = ThreadLocalRandom.current().nextDouble(1800, 2200);
+        double valorAleatorioFormatado = new BigDecimal(valorAleatorio)
+                                            .setScale(2, RoundingMode.HALF_UP)
+                                            .doubleValue();
+        return valorAleatorioFormatado;
     }
     
     static void analisarCandidato(double salarioPretendido){
