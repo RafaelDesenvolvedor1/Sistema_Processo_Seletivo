@@ -17,6 +17,16 @@ public class Candidato {
     public void ligar(){
         
     }
+    
+    public String imprimirDadosCandidato() {
+        
+    return "Candidato \n" + 
+            "nome=" + nome + 
+            "\nsalarioPretendido=" + salarioPretendido +
+            "\ntelefone=" + telefone + 
+            "\nselecionado=" + selecionado + 
+            "\n ----------";
+    }
 
     public String getNome() {
         return nome;
