@@ -22,10 +22,10 @@ public class Candidato {
     public String imprimirDadosCandidato() {
         
         return "Candidato \n" + 
-                "nome=" + nome + 
-                "\nsalarioPretendido=" + salarioPretendido +
-                "\ntelefone=" + telefone + 
-                "\nselecionado=" + selecionado + 
+                "nome: " + nome + 
+                "\nsalarioPretendido: " + salarioPretendido +
+                "\ntelefone: " + telefone + 
+                "\nselecionado: " + selecionado + 
                 "\n ----------";
     }
     
