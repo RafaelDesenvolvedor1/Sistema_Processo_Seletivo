@@ -25,21 +25,22 @@ public class ValidarCandidato {
     }
     
     static void selecaoCandidatos(ArrayList<Candidato> candidatosList, double salarioBase){
-        int candidatosSelecionados = 0;
-        int candidatoAtual = 0;
         
-        while(candidatosSelecionados < 5 && candidatoAtual < candidatosList.size()){
-            String candidatoNome = candidatosList.get(candidatoAtual).getNome();
-            double salarioPretendido = candidatosList.get(candidatoAtual).getSalarioPretendido();
+        ArrayList<Candidato> candidatosSelecionados = new ArrayList<Candidato>();
+        
+        for(Candidato candidatoAtual : candidatosList){
+            String candidatoNome = candidatoAtual.getNome();
+            double salarioPretendido = candidatoAtual.getSalarioPretendido();
             
-            System.out.println("O candidato " + candidatoNome + " Solicitou este valor de salario " + String.format("%.2f", salarioPretendido));
-            if(salarioBase >= salarioPretendido){
+            System.out.println("O candidato " + candidatoNome +
+                    " Solicitou este valor de salario " + String.format("%.2f", salarioPretendido));
+            
+            if(salarioBase >= salarioPretendido && candidatosSelecionados.size() < 5){
                 System.out.println("O candidato " + candidatoNome + " foi selecionado para a vaga");
-                candidatosSelecionados++;
+                candidatosSelecionados.add(candidatoAtual);
             }
-            
-            candidatoAtual++;
         }
+        
     }
     
     
