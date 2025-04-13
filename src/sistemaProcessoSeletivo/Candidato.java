@@ -14,10 +14,9 @@ public class Candidato {
         this.telefone = tel;
     }
     
-    public void ligar(){
+    public void atender(){
         
     }
-
     
     public String imprimirDadosCandidato() {
         

@@ -28,6 +28,17 @@ public class ValidarCandidato {
         
     }
     
+    static void entrarEmContato(Candidato candidato){
+        int tentativasRealizadas = 1;
+        boolean continuarTentado = true;
+        boolean atendeu = candidato.isAtendeu();
+        
+        do{
+            
+            
+        }while(continuarTentado && tentativasRealizadas < 3);
+    }
+    
     static void selecaoCandidatos(ArrayList<Candidato> candidatosList, double salarioBase){
         int candidatosSelecionados = 0;
         int candidatoAtual = 0;
