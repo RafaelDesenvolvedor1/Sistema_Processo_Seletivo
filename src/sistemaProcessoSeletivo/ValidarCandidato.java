@@ -26,27 +26,47 @@ public class ValidarCandidato {
         
         selecaoCandidatos(candidatos, 2000.0);
         
-        imprimirSelecionados(getCandidatosSelecionados(candidatos));
+        //imprimirSelecionados(getCandidatosSelecionados(candidatos));
+        
+        for(Candidato candidatoAtual : getCandidatosSelecionados(candidatos)){
+            entrarEmContato(candidatoAtual);
+        }
         
     }
     
     static void entrarEmContato(Candidato candidato){
+        System.out.println("\n----------------- Entrando em contato com candidatos selecionados -----------------\n");
+
+        
         int tentativasRealizadas = 1;
         boolean continuarTentado = true;
         boolean atendeu = candidato.isAtendeu();
         
         do{
+            candidato.atender();
+            continuarTentado = !candidato.isAtendeu();
             
+            if(continuarTentado){
+                tentativasRealizadas++;
+            }else{
+                System.out.println("CONTATO REALIZADO COM SUCESSO");
+            }
             
         }while(continuarTentado && tentativasRealizadas < 3);
+        
+        if(candidato.isAtendeu()){
+            System.out.println("Conseguimos contato com " + candidato.getNome() + " na " +
+                    tentativasRealizadas + " tentativa");
+        }else{
+            System.out.println("Não conseguimos contato com " + candidato.getNome() +
+                    ", numero maximo de tentativas " + tentativasRealizadas);
+        }
     }
     
     static void selecaoCandidatos(ArrayList<Candidato> candidatosList, double salarioBase){
         int candidatosSelecionados = 0;
         int candidatoAtual = 0;
-        
-        ArrayList<Candidato> candidatosSelecionadoslist = new ArrayList<Candidato>();
-        
+                
         while(candidatosSelecionados < 5 && candidatoAtual < candidatosList.size()){
             String candidatoNome = candidatosList.get(candidatoAtual).getNome();
             double salarioPretendido = candidatosList.get(candidatoAtual).getSalarioPretendido();
@@ -62,7 +82,6 @@ public class ValidarCandidato {
             candidatoAtual++;
         }
         
-       // imprimirSelecionados(getCandidatosSelecionados(candidatosList));
     }
     
     static ArrayList<Candidato> getCandidatosSelecionados(ArrayList<Candidato> candidatos){

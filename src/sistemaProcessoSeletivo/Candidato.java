@@ -1,5 +1,7 @@
 package sistemaProcessoSeletivo;
 
+import java.util.Random;
+
 public class Candidato {
     private String nome;
     private double salarioPretendido;
@@ -15,7 +17,7 @@ public class Candidato {
     }
     
     public void atender(){
-        
+        this.setAtendeu(new Random().nextInt(3)==1);
     }
     
     public String imprimirDadosCandidato() {
