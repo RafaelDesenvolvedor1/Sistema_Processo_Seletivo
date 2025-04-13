@@ -9,9 +9,8 @@ public class Candidato {
     
     public Candidato(){}
     
-    public Candidato(String n, double s, String tel){
+    public Candidato(String n, String tel){
         this.nome = n;
-        this.salarioPretendido = s;
         this.telefone = tel;
     }
     
